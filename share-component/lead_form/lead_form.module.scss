@@ -1,0 +1,100 @@
+.form {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+
+  input, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    color: #292929;
+    outline: none;
+    transition: border-color 0.3s;
+    &:focus { border-color: #FFC107; }
+  }
+
+  textarea { resize: vertical; }
+
+  button {
+    background: #FFE145;
+    color: #09362F;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 28px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.3s, transform 0.2s;
+    &:hover { background: #FFD60A; }
+    &:active { transform: scale(0.98); }
+    &:disabled { background: #CECECE; cursor: not-allowed; }
+  }
+}
+
+.inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  input { flex: 1 1 180px; }
+  button { flex: 0 0 auto; }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    button { width: 100%; }
+  }
+}
+
+.stacked {
+  flex-direction: column;
+  button { width: 100%; }
+}
+
+.green button {
+  background: #19695C;
+  color: #fff;
+  &:hover { background: #09362F; }
+}
+
+.success {
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  border-radius: 5px;
+  background: #E8F3F1;
+  color: #19695C;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+// ---- Animations & hover ----
+.form {
+  input, textarea {
+    transition: border-color 0.3s, box-shadow 0.3s;
+    &:hover { border-color: #19695C; }
+    &:focus { box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.25); }
+  }
+  button {
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+      transform: skewX(-20deg);
+    }
+    &:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18); }
+    &:hover:not(:disabled)::after { animation: shine 0.8s ease; }
+  }
+}
+
+@keyframes shine { from { left: -75%; } to { left: 130%; } }

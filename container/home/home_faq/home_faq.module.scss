@@ -1,0 +1,77 @@
+.section {
+  background: #F8F8F8;
+  padding: 80px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.item {
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+
+  &.open {
+    box-shadow: 0 3px 0 0 #00301E;
+    .header { background: #19695C; color: #fff; }
+    .qIcon, .toggle { color: #FFE145; }
+    .body { max-height: 400px; }
+  }
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border: none;
+  background: #fff;
+  color: #021814;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+
+  span { flex: 1; }
+}
+
+.qIcon, .toggle {
+  color: #19695C;
+  flex-shrink: 0;
+}
+
+.body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+
+  p {
+    margin: 0;
+    padding: 16px 20px 20px 56px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #292929;
+  }
+}
+
+// ---- Animations & hover ----
+.item { transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s; &:hover { border-color: #19695C; transform: translateX(4px); } }
+.header:hover { color: #19695C; }
+.item.open .header:hover { color: #fff; }
+.toggle { transition: transform 0.35s; }
+.item.open .toggle { transform: rotate(180deg); }
+.qIcon { transition: transform 0.35s; }
+.header:hover .qIcon { transform: scale(1.15); }

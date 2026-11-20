@@ -1,0 +1,164 @@
+.navbarWrapper {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  
+}
+.topBar {
+  background: #000000; color: #e0e1dd; padding: 8px 0; font-size: 13px;
+  .topContainer { display: flex; justify-content: space-between; align-items: center; }
+}
+
+.contactItem { display: flex; align-items: center; gap: 8px; svg { color: #19695C; font-size: 16px; } }
+.appBar { background: #fff !important; border-bottom: 1px solid #f0f0f0; }
+
+.toolbar { 
+  display: flex; justify-content: space-between; align-items: center; width: 100%;
+}
+
+.logoArea { flex: 1; display: flex; justify-content: flex-start; }
+
+.centerNav {
+  display: none; 
+  @media (min-width: 1024px) { 
+    display: flex; align-items: center; justify-content: center; gap: 25px; flex: 2; 
+  }
+}
+
+.rightNav {
+  flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 15px;
+}
+
+// --- ACTIVE STATE STYLES ---
+
+.navLink {
+  text-decoration: none; color: #1F1F1F; font-weight: 500; font-size: 15px;
+  padding: 10px 0; position: relative; transition: 0.3s;
+  &:hover { color: #19695C; }
+  
+  // Active state for normal links
+  &.active {
+    color: #19695C;
+    &::after {
+      content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: #19695C; border-radius: 10px;
+    }
+  }
+}
+
+.dropdownLabel {
+  color: #1F1F1F; font-weight: 500; font-size: 15px; cursor: pointer; display: flex; align-items: center; gap: 4px;
+  &.activeText { color: #19695C; } // Yellow color if category active
+}
+
+.dropdownActive {
+  color: #19695C !important;
+}
+
+.navItem { padding: 30px 0; position: relative; }
+
+.columnMenu {
+  position: absolute; top: 100%; left: 0; min-width: 240px; margin: 0; padding: 0; list-style: none;
+  background: #286158; border-radius: 0 0 6px 6px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  opacity: 0; visibility: hidden; transform: translateY(15px); transition: 0.3s; z-index: 1000;
+  &.show { opacity: 1; visibility: visible; transform: translateY(0); }
+  max-height: 70vh; overflow-y: auto;
+  scrollbar-width: thin; scrollbar-color: #FFE145 #286158;
+  &::-webkit-scrollbar { width: 6px; }
+  &::-webkit-scrollbar-track { background: #286158; }
+  &::-webkit-scrollbar-thumb { background: #FFE145; border-radius: 6px; }
+  li + li { border-top: 1px solid #205743; }
+  a {
+    display: block; padding: 11px 22px; color: #fff; font-size: 14px; font-weight: 500; text-decoration: none;
+    white-space: nowrap; transition: background 0.2s, color 0.2s, padding 0.2s;
+    &:hover { background: #19695C; color: #FFE145; padding-left: 28px; }
+  }
+  .columnActive { background: #19695C; color: #FFE145; }
+}
+.arrowIcon { font-size: 18px; transition: 0.3s; }
+.navItem:hover .arrowIcon { transform: rotate(180deg); color: #19695C; }
+
+.dropdownMenu, .megaMenu {
+  position: absolute; top: 100%; left: 50%; background: #fff; padding: 15px 0;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-top: 4px solid #19695C; border-radius: 0 0 8px 8px;
+  opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(20px); transition: 0.4s;
+  z-index: 1000;
+  &.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+}
+
+.dropdownMenu { 
+    min-width: 250px; 
+    li a { 
+        padding: 12px 20px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: #444; 
+        svg { color: #19695C; font-size: 20px; } 
+        &:hover { background: #EEF6F4; color: #19695C; padding-left: 25px; } 
+    } 
+}
+
+.megaMenu { min-width: 750px; padding: 25px; }
+.flexGrid { display: flex; flex-wrap: wrap; gap: 15px; }
+.flexItem { 
+    flex: 0 0 31%; display: flex; align-items: center; gap: 12px; text-decoration: none; color: #444; font-size: 13px; padding: 10px; border-radius: 5px; transition: 0.2s; 
+    svg { color: #19695C; font-size: 20px; } 
+    &:hover { background: #EEF6F4; color: #19695C; padding-left: 15px; } 
+}
+
+.ctaBtn {
+  background: #19695C; color: #fff !important; padding: 10px 20px; border-radius: 6px; text-decoration: none;
+  font-weight: 700; display: none; align-items: center; transition: 0.3s;
+  @media (min-width: 1024px) { display: flex; }
+  &:hover { background: #021814; }
+}
+
+.ctaActive { background: #021814 !important; }
+
+.ctaBtnMob {
+  background: #19695C; color: #fff !important; padding: 15px; border-radius: 6px; text-decoration: none;
+  font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+}
+
+.menuButton {
+  display: flex;
+  @media (min-width: 1024px) { display: none !important; }
+}
+
+// --- MOBILE DRAWER ---
+.drawerBox { width: 320px; height: 100%; background: #fff; }
+.drawerHeader { display: flex; justify-content: space-between; align-items: center; padding: 20px; }
+.mobileList { 
+  padding: 0; 
+  .mobileListItem { 
+    padding: 18px 20px; border-bottom: 1px solid #f5f5f5; cursor: pointer; 
+    display: flex; justify-content: space-between; align-items: center;
+    a { text-decoration: none; color: #021814; font-weight: 600; display: flex; align-items: center; gap: 15px; width: 100%; svg { color: #19695C; font-size: 24px; } } 
+    .labelWithIcon { display: flex; align-items: center; gap: 15px; font-weight: 600; color: #021814; svg { color: #19695C; font-size: 24px; } } 
+  } 
+  .mobActive { 
+    border-left: 5px solid #19695C; 
+    a, .labelWithIcon { color: #19695C !important; } 
+  } 
+}
+.mobileSubList { 
+    background: #fafafa; padding: 15px 20px 15px 55px; display: flex; flex-direction: column; gap: 18px; 
+    a { text-decoration: none; color: #555; font-size: 14px; display: flex; align-items: center; gap: 12px; svg { font-size: 18px; color: #19695C; } }
+    .mobSubActive { color: #19695C; font-weight: bold; }
+}
+.hideMobile { @media (max-width: 600px) { display: none; } }
+
+// ---- Animations & hover ----
+.navLink::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: #FFC107;
+  border-radius: 10px;
+  transition: width 0.3s, left 0.3s;
+}
+.navLink:hover::before { width: 100%; left: 0; }
+.dropdownLabel { transition: color 0.3s; &:hover { color: #19695C; } }
+.columnMenu li { opacity: 0; transform: translateX(-8px); transition: opacity 0.3s, transform 0.3s; }
+.columnMenu.show li { opacity: 1; transform: none; }
+@for $i from 1 through 14 { .columnMenu.show li:nth-child(#{$i}) { transition-delay: #{$i * 25}ms; } }

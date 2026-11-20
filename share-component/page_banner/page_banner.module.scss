@@ -1,0 +1,44 @@
+.banner {
+  position: relative;
+  overflow: hidden;
+  background: #19695C;
+  padding: 70px 20px;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/bg-shape-1.png') left top / 50% auto no-repeat,
+                url('/bg-shape-1.png') right bottom / 40% auto no-repeat;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+}
+
+.title {
+  position: relative;
+  margin: 0;
+  color: #fff;
+  font-size: 42px;
+  font-weight: 600;
+  @media (max-width: 768px) { font-size: 30px; }
+}
+
+// ---- Animations & hover ----
+.title { animation: fadeUp 0.7s ease both; }
+.banner::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  width: 80px;
+  height: 3px;
+  background: #FFE145;
+  border-radius: 3px;
+  transform: translateX(-50%) scaleX(0);
+  animation: growLine 0.7s 0.4s ease forwards;
+}
+@keyframes growLine { to { transform: translateX(-50%) scaleX(1); } }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }

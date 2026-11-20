@@ -1,0 +1,64 @@
+RewriteEngine On
+
+# 1. Force HTTPS and Remove WWW (Sahi Hai)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.allexamhelp\.com [NC]
+RewriteRule ^(.*)$ https://allexamhelp.com/$1 [L,R=301]
+
+# 2. Redirect index.php to Home Page
+# WordPress ki purani entry ko khatam karne ke liye
+RewriteCond %{THE_REQUEST} ^.*/index\.php [NC]
+RewriteRule ^(.*)index\.php$ / [R=301,L]
+
+# 2b. Old service URLs -> new certification pages
+RewriteRule ^online-teas-test/?$ /take-my-teas-exam-for-me/ [R=301,L]
+RewriteRule ^online-hesi-exam/?$ /take-my-hesi-exam/ [R=301,L]
+RewriteRule ^comptia-exams/?$ /take-my-comptia-exam-for-me/ [R=301,L]
+RewriteRule ^online-gre-test/?$ /take-my-gre-exam-for-me/ [R=301,L]
+RewriteRule ^online-ged-test/?$ /take-my-ged-test-for-me/ [R=301,L]
+RewriteRule ^online-pmp-exam/?$ /take-my-pmp-exam-for-me/ [R=301,L]
+RewriteRule ^online-gmat-exam/?$ /take-my-gmat-exam/ [R=301,L]
+RewriteRule ^(online-exam-help|online-course-help|online-class-help|assignment-help|insurance-exam|real-estate-exam|online-psi-exam|online-tests-quizzes|proctored-exam-help)/?$ / [R=301,L]
+
+# 2c. Old subject URLs -> new subjective exam pages
+RewriteRule ^biology-exam/?$ /take-my-biology-exam/ [R=301,L]
+RewriteRule ^chemistry-exam/?$ /take-my-chemistry-exam/ [R=301,L]
+RewriteRule ^economics-exam/?$ /take-my-economics-exam-for-me/ [R=301,L]
+RewriteRule ^finance-exam/?$ /take-my-finance-exam-for-me/ [R=301,L]
+RewriteRule ^history-exam/?$ /take-my-history-exam-for-me/ [R=301,L]
+RewriteRule ^statistics-exam/?$ /take-my-statistics-exam/ [R=301,L]
+RewriteRule ^math-exam/?$ /take-my-math-exam-for-me/ [R=301,L]
+RewriteRule ^nursing-exam/?$ /take-my-nursing-exam-for-me/ [R=301,L]
+RewriteRule ^philosophy-exam/?$ /take-my-philosophy-exam-for-me/ [R=301,L]
+RewriteRule ^(business-exam|computer-exam|law-exam|physics-exam|psychology-exam|sociology-exam)/?$ / [R=301,L]
+RewriteRule ^our-experts/?$ /about/ [R=301,L]
+
+# 3. Next.js Static Pages Fix (Bina .html ke pages kholne ke liye)
+# Agar aapne about.html upload ki hai, to ye use hireclassbuddy.com/about par chalayega
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# 4. SMART CATCH-ALL (SEO Safe)
+# Purane PHP pages ko home page par bhej raha hai
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\.php$ / [R=301,L]
+
+# 5. SPA / Client-Side Routing Fix
+# Agar koi page nahi milta (404), toh index.html load karega takay Next.js khud handle kare
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>

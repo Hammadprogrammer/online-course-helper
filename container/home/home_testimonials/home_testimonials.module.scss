@@ -1,0 +1,123 @@
+.section {
+  background: #fff;
+  padding: 80px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.slider {
+  position: relative;
+  padding: 0 50px;
+  @media (max-width: 640px) { padding: 0 10px; }
+}
+
+.viewport {
+  overflow: hidden;
+  padding-top: 40px;
+}
+
+.track {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.slide {
+  padding: 0 12px 10px;
+  box-sizing: border-box;
+}
+
+.card {
+  position: relative;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #E9E9E9;
+  border-top: 4px solid #19695C;
+  border-radius: 10px;
+  padding: 50px 24px 26px;
+  text-align: center;
+  box-shadow: 0 3px 0 0 #00301E;
+}
+
+.avatar {
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 4px solid #19695C;
+  overflow: hidden;
+  background: #fff;
+
+  img { width: 100%; height: 100%; object-fit: cover; }
+}
+
+.quote {
+  color: #FFC107;
+  font-size: 34px !important;
+}
+
+.text {
+  margin: 6px 0 14px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #292929;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 8px;
+  svg { color: #FFC107; font-size: 20px; }
+}
+
+.name {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: #021814;
+}
+
+.location {
+  font-size: 13px;
+  color: #69727d;
+}
+
+.nav {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #19695C;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.3s;
+  &:hover { background: #09362F; }
+  @media (max-width: 640px) { display: none; }
+}
+
+.prev { left: 0; }
+.next { right: 0; }
+
+// ---- Animations & hover ----
+.card {
+  transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+  &:hover { transform: translateY(-6px); border-color: #19695C; box-shadow: 0 8px 0 0 #00301E, 0 16px 30px rgba(0, 0, 0, 0.08); }
+  &:hover .avatar { transform: translateX(-50%) scale(1.08); border-color: #FFC107; }
+  &:hover .quote { transform: rotate(-12deg) scale(1.15); }
+}
+.avatar { transition: transform 0.35s, border-color 0.35s; }
+.quote { transition: transform 0.35s; }
+.nav { transition: background 0.3s, transform 0.3s, color 0.3s; &:hover { transform: translateY(-50%) scale(1.1); background: #FFE145; color: #09362F; } }

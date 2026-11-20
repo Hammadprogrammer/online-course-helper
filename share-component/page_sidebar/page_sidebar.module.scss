@@ -1,0 +1,85 @@
+.sidebar {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @media (max-width: 1024px) { position: static; }
+  &.static { position: static; }
+}
+
+.sideBox {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+}
+
+.sideTitle {
+  margin: 0;
+  background: #19695C;
+  color: #FFE145;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 12px 20px;
+}
+
+.sideBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #292929;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.3s;
+  svg { color: #19695C; }
+  &:hover { color: #19695C; }
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+
+  li + li { border-top: 1px solid #F0F0F0; }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    color: #292929;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s, padding 0.3s;
+    svg { color: #FFC107; font-size: 20px; }
+    &:hover, &.active { color: #19695C; padding-left: 26px; }
+    &.active { font-weight: 600; background: #EEF6F4; }
+  }
+}
+
+// ---- Animations & hover ----
+.sideBox { transition: box-shadow 0.35s; &:hover { box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1); } }
+.sideTitle { position: relative; overflow: hidden; }
+.sideTitle::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: #FFE145;
+  transition: width 0.4s;
+}
+.sideBox:hover .sideTitle::after { width: 100%; }
+.linkList a svg { transition: transform 0.3s; }
+.linkList a:hover svg { transform: translateX(4px); }
+.contactLink svg { transition: transform 0.3s; }
+.contactLink:hover svg { transform: scale(1.2) rotate(-8deg); }

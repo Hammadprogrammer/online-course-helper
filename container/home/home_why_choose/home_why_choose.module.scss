@@ -1,0 +1,123 @@
+.section {
+  background: #fff;
+  padding: 80px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 340px 1fr;
+  align-items: center;
+  gap: 30px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid #E9E9E9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 0 0 #19695C;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 0 0 #19695C;
+  }
+
+  &.left {
+    flex-direction: row-reverse;
+    text-align: right;
+    @media (max-width: 1024px) { flex-direction: row; text-align: left; }
+  }
+
+  h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #021814;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #292929;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 10px;
+  background: #FFC107;
+  color: #09362F;
+  svg { font-size: 28px; }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  @media (max-width: 1024px) { order: -1; }
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  padding: 12px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 200px 200px 20px 20px;
+    background: #19695C;
+  }
+}
+
+.image {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 190px 190px 14px 14px;
+  border: 4px solid #FFE145;
+  object-fit: cover;
+}
+
+// ---- Animations & hover ----
+.card {
+  transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s, background 0.35s;
+  &:hover { background: #19695C; border-color: #19695C; box-shadow: 0 8px 0 0 #FFC107; }
+  &:hover h3 { color: #FFE145; }
+  &:hover p { color: #F8F8F8; }
+  &:hover .icon { background: #FFE145; transform: rotate(-10deg) scale(1.08); }
+  h3, p { transition: color 0.35s; }
+}
+.icon { transition: transform 0.35s, background 0.35s; }
+.imageFrame { animation: floatY 5s ease-in-out infinite; }
+.image { transition: transform 0.5s; }
+.imageFrame:hover .image { transform: scale(1.03); }
+
+@keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }

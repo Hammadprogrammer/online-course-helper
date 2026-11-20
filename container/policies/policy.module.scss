@@ -1,0 +1,56 @@
+.section {
+  background: #fff;
+  padding: 50px 20px 70px;
+}
+
+.content {
+  max-width: 1000px;
+  margin: 0 auto;
+  color: #292929;
+  font-size: 14px;
+  line-height: 1.75;
+
+  h2 {
+    margin: 28px 0 10px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #021814;
+    @media (max-width: 600px) { font-size: 20px; }
+  }
+
+  p { margin: 0 0 12px; }
+
+  ul, ol {
+    margin: 0 0 12px;
+    padding-left: 40px;
+    li { margin-bottom: 4px; }
+  }
+
+  ul { list-style: disc; }
+  ol { list-style: decimal; }
+
+  strong { color: #021814; }
+
+  a {
+    color: #C2185B;
+    text-decoration: underline;
+    &:hover { color: #19695C; }
+  }
+}
+
+// ---- Animations & hover ----
+.content h2 { position: relative; transition: color 0.3s, padding-left 0.3s; }
+.content h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 70%;
+  background: #FFC107;
+  border-radius: 2px;
+  transform: translateY(-50%);
+  transition: width 0.3s;
+}
+.content h2:hover { color: #19695C; padding-left: 12px; }
+.content h2:hover::before { width: 4px; }

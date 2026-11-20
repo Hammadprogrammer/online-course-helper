@@ -1,0 +1,61 @@
+.section {
+  padding: 70px 20px 80px;
+  background: #fff;
+}
+
+.grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+  @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 560px) { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #E9E9E9;
+  border-radius: 8px;
+  padding: 22px 20px;
+  box-shadow: 0 4px 0 0 #19695C, 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.text {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.7;
+  color: #524D4D;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 16px;
+  svg { color: #FFC107; font-size: 18px; }
+}
+
+.name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #19695C;
+}
+
+.location {
+  font-size: 12px;
+  color: #69727d;
+}
+
+// ---- Animations & hover ----
+.card {
+  transition: transform 0.35s, box-shadow 0.35s, background 0.35s;
+  &:hover { transform: translateY(-6px); background: #19695C; box-shadow: 0 6px 0 0 #FFC107, 0 16px 30px rgba(0, 0, 0, 0.1); }
+  &:hover .text, &:hover .location { color: #E0E0E0; }
+  &:hover .name { color: #FFE145; }
+  &:hover .stars svg { transform: scale(1.15); }
+}
+.text, .name, .location { transition: color 0.35s; }
+.stars svg { transition: transform 0.3s; }
