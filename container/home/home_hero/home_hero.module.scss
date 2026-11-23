@@ -3,6 +3,7 @@
   background-color: #19695C;
   overflow: hidden;
   padding: 70px 20px 60px;
+  @media (max-width: 768px) { padding: 48px 16px 44px; }
 
   &::before {
     content: '';
@@ -93,6 +94,13 @@
   border-radius: 10px;
   padding: 18px;
   margin: 0 auto 34px;
+  @media (max-width: 768px) {
+    background: rgba(9, 54, 47, 0.55);
+    border-color: transparent;
+    border-radius: 6px;
+    padding: 24px 16px;
+    margin-bottom: 28px;
+  }
 }
 
 .badges {
@@ -100,6 +108,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 18px;
+  @media (max-width: 768px) { gap: 14px 12px; }
 }
 
 .badge {
@@ -122,6 +131,15 @@
   }
 
   span { color: #524D4D; font-size: 13px; }
+
+  @media (max-width: 768px) {
+    flex: 0 1 calc(50% - 6px);
+    min-width: 0;
+    gap: 8px;
+    padding: 10px 12px;
+    strong { font-size: 16px; }
+    span { font-size: 12px; }
+  }
 }
 
 .badgeIcon {
@@ -135,6 +153,11 @@
   color: #FFE145 !important;
   flex-shrink: 0;
   svg { font-size: 22px; }
+  @media (max-width: 768px) {
+    width: 36px;
+    height: 36px;
+    svg { font-size: 19px; }
+  }
 }
 
 // ---- Animations & hover ----
